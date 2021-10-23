@@ -71,6 +71,7 @@ export interface Options extends BaseOptions {
   vueI18n?: I18nOptions | string
   vueI18nLoader?: boolean
   vuex?: VuexOptions | false
+  bridge?: boolean
 }
 
 export interface IVueI18nNuxt extends Required<BaseOptions> {

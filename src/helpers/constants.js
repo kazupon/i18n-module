@@ -62,5 +62,6 @@ export const DEFAULT_OPTIONS = {
   pages: {},
   skipSettingLocaleOnNavigate: false,
   onBeforeLanguageSwitch: () => {},
-  onLanguageSwitched: () => null
+  onLanguageSwitched: () => null,
+  bridge: false
 }

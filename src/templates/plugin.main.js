@@ -17,11 +17,11 @@ import { joinURL } from '~i18n-ufo'
 // @ts-ignore
 import { klona } from '~i18n-klona'
 
-Vue.use(VueI18n)
-
 /** @type {import('@nuxt/types').Plugin} */
 export default async (context) => {
   const { app, route, store, req, res, redirect } = context
+
+  Vue.use(VueI18n, { bridge: options.bridge })
 
   if (options.vuex && store) {
     registerStore(store, options.vuex, options.localeCodes)
