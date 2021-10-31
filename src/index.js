@@ -11,6 +11,8 @@ import { formatMessage } from './templates/utils-common'
 export default function (moduleOptions) {
   /** @type {import('../types/internal').ResolvedOptions} */
   const options = merge({}, DEFAULT_OPTIONS, moduleOptions, this.options.i18n)
+  // eslint-disable-next-line no-console
+  console.log('@nuxtjs/i18n options', options)
 
   if (!Object.values(STRATEGIES).includes(options.strategy)) {
     // eslint-disable-next-line no-console
