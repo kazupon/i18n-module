@@ -22,6 +22,8 @@ import { createI18n } from '~i18n-bridge'
 /** @type {import('@nuxt/types').Plugin} */
 export default async (context) => {
   const { app, route, store, req, res, redirect } = context
+  // eslint-disable-next-line
+  console.log('legacy nuxt module context', context)
 
   // NOTE:
   // if `options.bridge` is `true`, vue-i18n does some optimizations in the plugin installation process to make it bridge.
