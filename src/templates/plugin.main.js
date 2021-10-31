@@ -334,7 +334,8 @@ export default async (context) => {
   // We should be handled specially Composition API mode implementation that is work at somewhere...
   // @ts-ignore
   app.i18n = context.i18n = !options.bridge ? new VueI18n(vueI18nOptions) : createI18n(vueI18nOptions, VueI18n)
-  if (options.bridge) {
+  // @ts-ignore
+  if (options.bridge && app.i18n.mode === 'legacy') {
     // @ts-ignore
     Vue.use(app.i18n) // NOTE: we need to install, because vue-i18n apply the plugin to Vue.
   }
