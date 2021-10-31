@@ -405,8 +405,8 @@ export default async (context) => {
 
   // NOTE:
   // @ts-ignore
-  if (context.$_nuxtApp && context.$_nuxtApp.callHook) {
+  if (options.bridge && context.$_nuxtApp && context.$_nuxtApp.callHook) {
     // @ts-ignore
-    context.$_nuxtApp.callHook('i18n:legacy:ready', i18n)
+    context.$_nuxtApp.callHook('i18n:legacy:ready', app.i18n)
   }
 }
