@@ -402,4 +402,11 @@ export default async (context) => {
       location.assign(joinURL(context.base, redirectTo))
     }
   }
+
+  // NOTE:
+  // @ts-ignore
+  if (context.$_nuxtApp && context.$_nuxtApp.callHook) {
+    // @ts-ignore
+    context.$_nuxtApp.callHook('i18n:legacy:ready', i18n)
+  }
 }
