@@ -11,8 +11,6 @@ import { formatMessage } from './templates/utils-common'
 export default function (moduleOptions) {
   /** @type {import('../types/internal').ResolvedOptions} */
   const options = merge({}, DEFAULT_OPTIONS, moduleOptions, this.options.i18n)
-  // eslint-disable-next-line no-console
-  console.log('@nuxtjs/i18n options', options)
 
   if (!Object.values(STRATEGIES).includes(options.strategy)) {
     // eslint-disable-next-line no-console
@@ -93,6 +91,7 @@ export default function (moduleOptions) {
 
   this.options.alias['~i18n-klona'] = require.resolve('klona/full').replace(/\.js$/, '.mjs')
   this.options.alias['~i18n-ufo'] = require.resolve('ufo').replace(/\.js$/, '.mjs')
+  this.options.alias['~i18n-bridge'] = 'vue-i18n-bridge/dist/vue-i18n-bridge.esm-bundler.js'
 
   if (!Array.isArray(this.options.router.middleware)) {
     throw new TypeError(formatMessage('options.router.middleware is not an array.'))

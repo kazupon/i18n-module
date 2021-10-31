@@ -16,11 +16,16 @@ import { loadLanguageAsync, resolveBaseUrl, registerStore } from './plugin.utils
 import { joinURL } from '~i18n-ufo'
 // @ts-ignore
 import { klona } from '~i18n-klona'
+// @ts-ignore
+import { createI18n } from '~i18n-bridge'
 
 /** @type {import('@nuxt/types').Plugin} */
 export default async (context) => {
   const { app, route, store, req, res, redirect } = context
 
+  // NOTE:
+  // if `options.bridge` is `true`, vue-i18n does some optimizations in the plugin installation process to make it bridge.
+  // Specifically, it omits the mixin for vue-i18n.
   Vue.use(VueI18n, { bridge: options.bridge })
 
   if (options.vuex && store) {
@@ -321,8 +326,18 @@ export default async (context) => {
   // Set instance options
   const vueI18nOptions = typeof options.vueI18n === 'function' ? await options.vueI18n(context) : klona(options.vueI18n)
   vueI18nOptions.componentInstanceCreatedListener = extendVueI18nInstance
+  // NOTE:
+  // If `options.bridge` is `true`, vue-i18n-bridge will execute the exported vue-i18n-next compatible `createI18n` function.
+  // Legacy mode, This means that for the options API style, the `VueI18n` will be returned as a new instance.
+  //
+  // TODO:
+  // We should be handled specially Composition API mode implementation that is work at somewhere...
   // @ts-ignore
-  app.i18n = context.i18n = new VueI18n(vueI18nOptions)
+  app.i18n = context.i18n = !options.bridge ? new VueI18n(vueI18nOptions) : createI18n(vueI18nOptions, VueI18n)
+  if (options.bridge) {
+    // @ts-ignore
+    Vue.use(app.i18n) // NOTE: we need to install, because vue-i18n apply the plugin to Vue.
+  }
   // Initialize locale and fallbackLocale as vue-i18n defaults those to 'en-US' if falsey
   app.i18n.locale = ''
   app.i18n.fallbackLocale = vueI18nOptions.fallbackLocale || ''
