@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+// @ts-ignore
+import { createI18n } from 'vue-i18n-bridge'
 import { nuxtI18nHead } from './head-meta'
 import { Constants, nuxtOptions, options } from './options'
 import {
@@ -16,8 +18,6 @@ import { loadLanguageAsync, resolveBaseUrl, registerStore } from './plugin.utils
 import { joinURL } from '~i18n-ufo'
 // @ts-ignore
 import { klona } from '~i18n-klona'
-// @ts-ignore
-import { createI18n } from '~i18n-bridge'
 
 /** @type {import('@nuxt/types').Plugin} */
 export default async (context) => {

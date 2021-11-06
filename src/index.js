@@ -91,7 +91,7 @@ export default function (moduleOptions) {
 
   this.options.alias['~i18n-klona'] = require.resolve('klona/full').replace(/\.js$/, '.mjs')
   this.options.alias['~i18n-ufo'] = require.resolve('ufo').replace(/\.js$/, '.mjs')
-  this.options.alias['~i18n-bridge'] = 'vue-i18n-bridge/dist/vue-i18n-bridge.esm-bundler.js'
+  this.options.alias['vue-i18n-bridge'] = 'vue-i18n-bridge/dist/vue-i18n-bridge.esm-bundler.js'
 
   if (!Array.isArray(this.options.router.middleware)) {
     throw new TypeError(formatMessage('options.router.middleware is not an array.'))
