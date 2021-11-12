@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import VueI18n from 'vue-i18n'
+// @ts-ignore
+import VueI18n from 'vue-i18n-legacy'
 // @ts-ignore
 import { createI18n } from 'vue-i18n-bridge'
 import { nuxtI18nHead } from './head-meta'
